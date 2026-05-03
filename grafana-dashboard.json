@@ -83,7 +83,7 @@
             "spanNulls": false,
             "stacking": { "group": "A", "mode": "normal" }
           },
-          "unit": "Bps"
+          "unit": "binbps"
         },
         "overrides": []
       },
@@ -96,7 +96,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "${datasource}" },
-          "expr": "rate(cake_sent_bytes_total{iface=~\"$iface\"}[$__rate_interval])",
+          "expr": "rate(cake_sent_bytes_total{iface=~\"$iface\"}[$__rate_interval]) * 8",
           "legendFormat": "{{iface}}",
           "refId": "A"
         }
@@ -277,7 +277,7 @@
             "spanNulls": false,
             "stacking": { "group": "A", "mode": "normal" }
           },
-          "unit": "Bps"
+          "unit": "binbps"
         },
         "overrides": []
       },
@@ -290,12 +290,12 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "${datasource}" },
-          "expr": "rate(cake_tin_sent_bytes_total{iface=~\"$iface\"}[$__rate_interval])",
+          "expr": "rate(cake_tin_sent_bytes_total{iface=~\"$iface\"}[$__rate_interval]) * 8",
           "legendFormat": "{{iface}} / {{tin_name}}",
           "refId": "A"
         }
       ],
-      "title": "Sent Bytes/s by Tin",
+      "title": "Sent Bits/s by Tin",
       "type": "timeseries"
     },
     {
