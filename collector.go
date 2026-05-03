@@ -61,7 +61,7 @@ func updateMetrics(q QdiscStats) {
 	ifaceMetric("cake_requeue_packets_total").Set(float64(q.Requeues))
 	ifaceMetric("cake_backlog_bytes").Set(float64(q.Backlog))
 	ifaceMetric("cake_backlog_packets").Set(float64(q.QueueLen))
-	ifaceMetric("cake_capacity_estimate_bps").Set(float64(q.CapacityEstimate))
+	ifaceMetric("cake_capacity_estimate_bps").Set(float64(q.CapacityEstimate) * 8)
 	ifaceMetric("cake_memory_limit_bytes").Set(float64(q.MemoryLimit))
 	ifaceMetric("cake_memory_used_bytes").Set(float64(q.MemoryUsed))
 
@@ -79,7 +79,7 @@ func updateMetrics(q QdiscStats) {
 		tinMetric("cake_tin_ecn_mark_packets_total", t, n).Set(float64(tin.EcnMarkPackets))
 		tinMetric("cake_tin_backlog_bytes", t, n).Set(float64(tin.BacklogBytes))
 		tinMetric("cake_tin_backlog_packets", t, n).Set(float64(tin.BacklogPackets))
-		tinMetric("cake_tin_threshold_rate_bps", t, n).Set(float64(tin.ThresholdRate))
+		tinMetric("cake_tin_threshold_rate_bps", t, n).Set(float64(tin.ThresholdRate) * 8)
 		tinMetric("cake_tin_target_us", t, n).Set(float64(tin.TargetUs))
 		tinMetric("cake_tin_interval_us", t, n).Set(float64(tin.IntervalUs))
 		tinMetric("cake_tin_peak_delay_us", t, n).Set(float64(tin.PeakDelayUs))
